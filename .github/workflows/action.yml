@@ -1,4 +1,4 @@
-name: CI
+name: Main workflow
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
       - 'master'
 
 jobs:
-  Build_and_Deploy:
+  build_and_deploy:
+    name: Build and deploy
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -17,11 +18,12 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 10
+      - id: ci
+        name: npm ci
+        run: npm ci
       - id: build
         name: Build
-        run: |
-          npm ci
-          npm run build
+        run: npm run build
       - id: deploy
         name: Deploy
         run: bash ./.github/workflows/deploy.sh

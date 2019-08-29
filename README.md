@@ -1,4 +1,4 @@
-# 2FA ![Github Actions](http://aliyunfc.tarocch1.com/github-actions-badge/Tarocch1/2FA)
+# 2FA ![Github Actions](https://www.github.com/Tarocch1/2FA/workflows/Main%20workflow/badge.svg)
 
 双因素认证器。
 
