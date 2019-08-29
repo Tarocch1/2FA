@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  Build_and_Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@master
+      - id: setup_nodejs
+        name: Setup node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 10
+      - id: build
+        name: Build
+        run: |
+          npm ci
+          npm run build
+      - id: deploy
+        name: Deploy
+        run: bash ./.github/workflows/deploy.sh
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
