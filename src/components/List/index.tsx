@@ -22,9 +22,9 @@ function List() {
   }, []);
   useEffect(() => {
     cron();
-    const timer = setInterval(cron, 1000);
+    const timer = window.setInterval(cron, 1000);
     return () => {
-      clearInterval(timer);
+      window.clearInterval(timer);
     };
   }, []);
   const cron = () => {

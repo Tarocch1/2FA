@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
-import { Layout, Row, Col, Typography, Button } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Layout, Row, Col, Typography, Button, Modal } from 'antd';
 import { useObserver } from 'mobx-react-lite';
 import useStore from './stores/useStore';
 import Loading from './components/Loading';
 import Login from './components/Login';
 import List from './components/List';
+import Calc from './components/Calc';
 
 function App() {
   const { loginStore } = useStore();
+  const [showCalc, setShowCalc] = useState(false);
   useEffect(() => {
     loginStore.initAuth();
   }, []);
@@ -24,9 +26,14 @@ function App() {
               </Col>
               <Col>
                 {loginStore.inited && loginStore.logged && (
-                  <Button type="danger" onClick={loginStore.logout}>
-                    退出
-                  </Button>
+                  <React.Fragment>
+                    <Button style={{ marginRight: 8 }} type="primary" onClick={() => setShowCalc(true)}>
+                      计算器
+                    </Button>
+                    <Button type="danger" onClick={loginStore.logout}>
+                      退出
+                    </Button>
+                  </React.Fragment>
                 )}
               </Col>
             </Row>
@@ -38,6 +45,16 @@ function App() {
         {loginStore.inited && !loginStore.logged && <Login />}
         {loginStore.inited && loginStore.logged && <List />}
       </Layout.Content>
+      <Modal
+        destroyOnClose
+        maskClosable={false}
+        title="计算器"
+        footer={null}
+        visible={showCalc}
+        onCancel={() => setShowCalc(false)}
+      >
+        <Calc />
+      </Modal>
     </Layout>
   ));
 }
