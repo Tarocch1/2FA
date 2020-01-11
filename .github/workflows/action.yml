@@ -17,7 +17,7 @@ jobs:
         name: Setup node.js
         uses: actions/setup-node@master
         with:
-          node-version: 10
+          node-version: 12
       - id: ci
         name: npm ci
         run: npm ci
