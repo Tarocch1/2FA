@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAEA,MACE,WAAY,CACZ,YACF,CAEA,oBACE,UACF,CAEA,0BACE,kBACF","file":"main.5e06658f.chunk.css","sourcesContent":["@import '~antd/dist/antd.css';\n\n#root {\n  width: 100vw;\n  height: 100vh;\n}\n\n::-webkit-scrollbar {\n  width: 10px;\n}\n\n::-webkit-scrollbar-thumb {\n  background: #8c8c8c;\n}\n"]}
