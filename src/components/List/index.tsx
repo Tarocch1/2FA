@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, List as ListAntd, Progress, message } from 'antd';
+import { Row, Col, Card, List as ListAntd, Progress, message } from 'antd';
 import { useObserver } from 'mobx-react-lite';
 import { authenticator } from 'otplib';
 import copy from 'copy-to-clipboard';
@@ -51,25 +51,27 @@ function List() {
   return useObserver(() => (
     <Row type="flex" justify="center">
       <Col style={{ maxWidth: 1000, flexGrow: 1 }}>
-        <ListAntd
-          bordered
-          itemLayout="horizontal"
-          loading={keyStore.loading}
-          header={<Progress percent={((30 - timeRemain) * 100) / 30} format={() => `${timeRemain}秒`} />}
-          dataSource={data}
-          renderItem={item => (
-            <ListAntd.Item
-              actions={[
-                <a key="copy" onClick={() => cp(item.token)}>
-                  复制
-                </a>,
-              ]}
-            >
-              <ListAntd.Item.Meta title={item.name} />
-              <div>{item.token}</div>
-            </ListAntd.Item>
-          )}
-        />
+        <Card bodyStyle={{ padding: 8 }} bordered={false}>
+          <ListAntd
+            bordered
+            itemLayout="horizontal"
+            loading={keyStore.loading}
+            header={<Progress percent={((30 - timeRemain) * 100) / 30} format={() => `${timeRemain}秒`} />}
+            dataSource={data}
+            renderItem={item => (
+              <ListAntd.Item
+                actions={[
+                  <a key="copy" onClick={() => cp(item.token)}>
+                    复制
+                  </a>,
+                ]}
+              >
+                <ListAntd.Item.Meta title={item.name} />
+                <div>{item.token}</div>
+              </ListAntd.Item>
+            )}
+          />
+        </Card>
       </Col>
     </Row>
   ));
