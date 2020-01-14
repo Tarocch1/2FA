@@ -9,6 +9,9 @@ export default function request(options: AxiosRequestConfig) {
     .then(res => res.data)
     .catch(error => {
       message.error(error.message);
-      throw error;
+      return {
+        erred: true,
+        error,
+      };
     });
 }
