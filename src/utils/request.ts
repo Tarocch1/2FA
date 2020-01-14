@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { message } from 'antd';
 
 export default function request(options: AxiosRequestConfig) {
   const jwt = JSON.parse(window.localStorage.getItem('jwt') || '{}');
@@ -8,7 +7,6 @@ export default function request(options: AxiosRequestConfig) {
   return axios(options)
     .then(res => res.data)
     .catch(error => {
-      message.error(error.message);
       return {
         erred: true,
         error,

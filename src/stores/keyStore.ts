@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import { message } from 'antd';
 import { keyService } from '../services';
 
 interface Key {
@@ -13,7 +14,11 @@ class KeyStore {
 
   @action getKeys = async () => {
     const keys = await keyService.getKeys();
-    this.keys = keys;
+    if (keys.erred) {
+      message.error('获取密钥失败');
+    } else {
+      this.keys = keys;
+    }
     this.loading = false;
   };
 }
