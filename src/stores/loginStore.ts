@@ -13,6 +13,7 @@ class LoginStore {
       if (checkTokenRes.erred) {
         this.logged = false;
         this.inited = true;
+        window.localStorage.removeItem('jwt');
         return;
       }
       if (jwt.exp - Math.floor(Date.now() / 1000) <= 60 * 60 * 24) {
