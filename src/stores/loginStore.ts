@@ -14,14 +14,14 @@ class LoginStore {
         this.logged = false;
         this.inited = true;
         window.localStorage.removeItem('jwt');
-        return;
+      } else {
+        if (jwt.payload.exp - Math.floor(Date.now() / 1000) <= 60 * 60 * 24) {
+          const newJWT = await loginService.refreshToken();
+          window.localStorage.setItem('jwt', JSON.stringify(newJWT));
+        }
+        this.logged = true;
+        this.inited = true;
       }
-      if (jwt.exp - Math.floor(Date.now() / 1000) <= 60 * 60 * 24) {
-        const newJWT = await loginService.refreshToken();
-        window.localStorage.setItem('jwt', JSON.stringify(newJWT));
-      }
-      this.logged = true;
-      this.inited = true;
     } else {
       const params = new URLSearchParams(window.location.search.replace(/^\?/, ''));
       const code = params.get('code');
