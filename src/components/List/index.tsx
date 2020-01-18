@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, List as ListAntd, Progress, message } from 'antd';
-import { useObserver } from 'mobx-react-lite';
+import { useModel } from '@tarocch1/use-model';
 import { authenticator } from 'otplib';
 import copy from 'copy-to-clipboard';
-import useStore from '../../stores/useStore';
+import { KeyModel } from '../../models';
 
 interface DataItem {
   name: string;
@@ -11,12 +11,12 @@ interface DataItem {
 }
 
 function List() {
-  const { keyStore } = useStore();
+  const keyModel = useModel(KeyModel);
   const [data, setData] = useState<DataItem[]>([]);
   const [timeRemain, setRemain] = useState(30);
   useEffect(() => {
     (async () => {
-      await keyStore.getKeys();
+      await keyModel.getKeys();
       calc();
     })();
   }, []);
@@ -36,7 +36,7 @@ function List() {
   };
   const calc = () => {
     const newData: DataItem[] = [];
-    keyStore.keys.forEach(key => {
+    keyModel.keys.forEach(key => {
       newData.push({
         name: key.name,
         token: authenticator.generate(key.key),
@@ -48,14 +48,14 @@ function List() {
     copy(text);
     message.success('复制成功');
   };
-  return useObserver(() => (
+  return (
     <Row type="flex" justify="center">
       <Col style={{ maxWidth: 1000, flexGrow: 1 }}>
         <Card bodyStyle={{ padding: 8 }} bordered={false}>
           <ListAntd
             bordered
             itemLayout="horizontal"
-            loading={keyStore.loading}
+            loading={keyModel.loading}
             header={<Progress percent={((30 - timeRemain) * 100) / 30} format={() => `${timeRemain}秒`} />}
             dataSource={data}
             renderItem={item => (
@@ -74,7 +74,7 @@ function List() {
         </Card>
       </Col>
     </Row>
-  ));
+  );
 }
 
 export default List;

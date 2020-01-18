@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://tarocch1.github.io/2FA",
   "dependencies": {
+    "@tarocch1/use-model": "^1.1.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -14,8 +15,6 @@
     "antd": "^3.26.6",
     "axios": "^0.19.1",
     "copy-to-clipboard": "^3.2.0",
-    "mobx": "^5.15.1",
-    "mobx-react-lite": "^1.5.2",
     "otplib": "^12.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Row, Col, Typography, Button, Modal } from 'antd';
-import { useObserver } from 'mobx-react-lite';
-import useStore from './stores/useStore';
+import { useModel } from '@tarocch1/use-model';
+import { LoginModel } from './models';
 import Loading from './components/Loading';
 import Login from './components/Login';
 import List from './components/List';
 import Calc from './components/Calc';
 
 function App() {
-  const { loginStore } = useStore();
+  const loginModel = useModel(LoginModel);
   const [showCalc, setShowCalc] = useState(false);
   useEffect(() => {
-    loginStore.initAuth();
+    loginModel.initAuth();
   }, []);
-  return useObserver(() => (
+  return (
     <Layout>
       <Layout.Header style={{ padding: '0 16px' }}>
         <Row style={{ height: '100%' }} type="flex" justify="center" align="middle">
@@ -25,12 +25,12 @@ function App() {
                 </Typography.Title>
               </Col>
               <Col>
-                {loginStore.inited && loginStore.logged && (
+                {loginModel.inited && loginModel.logged && (
                   <React.Fragment>
                     <Button style={{ marginRight: 8 }} type="primary" onClick={() => setShowCalc(true)}>
                       计算器
                     </Button>
-                    <Button type="danger" onClick={loginStore.logout}>
+                    <Button type="danger" onClick={loginModel.logout}>
                       退出
                     </Button>
                   </React.Fragment>
@@ -41,9 +41,9 @@ function App() {
         </Row>
       </Layout.Header>
       <Layout.Content style={{ height: 'calc(100vh - 64px)', padding: 16, overflowY: 'scroll' }}>
-        {!loginStore.inited && <Loading />}
-        {loginStore.inited && !loginStore.logged && <Login />}
-        {loginStore.inited && loginStore.logged && <List />}
+        {!loginModel.inited && <Loading />}
+        {loginModel.inited && !loginModel.logged && <Login />}
+        {loginModel.inited && loginModel.logged && <List />}
       </Layout.Content>
       <Modal
         destroyOnClose
@@ -56,7 +56,7 @@ function App() {
         <Calc />
       </Modal>
     </Layout>
-  ));
+  );
 }
 
 export default App;
