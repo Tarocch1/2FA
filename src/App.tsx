@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Row, Col, Typography, Button, Modal } from 'antd';
 import { useModel } from '@tarocch1/use-model';
-import { LoginModel } from './models';
+import { loginModel } from './models';
 import Loading from './components/Loading';
 import Login from './components/Login';
 import List from './components/List';
 import Calc from './components/Calc';
 
 function App() {
-  const loginModel = useModel(LoginModel);
+  const _loginModel = useModel(loginModel);
   const [showCalc, setShowCalc] = useState(false);
   useEffect(() => {
-    loginModel.initAuth();
+    _loginModel.initAuth();
   }, []);
   return (
     <Layout>
@@ -25,12 +25,12 @@ function App() {
                 </Typography.Title>
               </Col>
               <Col>
-                {loginModel.inited && loginModel.logged && (
+                {_loginModel.inited && _loginModel.logged && (
                   <React.Fragment>
                     <Button style={{ marginRight: 8 }} type="primary" onClick={() => setShowCalc(true)}>
                       计算器
                     </Button>
-                    <Button type="danger" onClick={loginModel.logout}>
+                    <Button type="danger" onClick={_loginModel.logout}>
                       退出
                     </Button>
                   </React.Fragment>
@@ -41,9 +41,9 @@ function App() {
         </Row>
       </Layout.Header>
       <Layout.Content style={{ height: 'calc(100vh - 64px)', padding: 16, overflowY: 'scroll' }}>
-        {!loginModel.inited && <Loading />}
-        {loginModel.inited && !loginModel.logged && <Login />}
-        {loginModel.inited && loginModel.logged && <List />}
+        {!_loginModel.inited && <Loading />}
+        {_loginModel.inited && !_loginModel.logged && <Login />}
+        {_loginModel.inited && _loginModel.logged && <List />}
       </Layout.Content>
       <Modal
         destroyOnClose

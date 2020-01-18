@@ -20,4 +20,4 @@ class KeyModel {
   };
 }
 
-export default KeyModel;
+export default new KeyModel();

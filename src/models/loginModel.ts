@@ -43,4 +43,4 @@ class LoginModel {
   };
 }
 
-export default LoginModel;
+export default new LoginModel();

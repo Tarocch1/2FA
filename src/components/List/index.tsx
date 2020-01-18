@@ -3,7 +3,7 @@ import { Row, Col, Card, List as ListAntd, Progress, message } from 'antd';
 import { useModel } from '@tarocch1/use-model';
 import { authenticator } from 'otplib';
 import copy from 'copy-to-clipboard';
-import { KeyModel } from '../../models';
+import { keyModel } from '../../models';
 
 interface DataItem {
   name: string;
@@ -11,12 +11,12 @@ interface DataItem {
 }
 
 function List() {
-  const keyModel = useModel(KeyModel);
+  const _keyModel = useModel(keyModel);
   const [data, setData] = useState<DataItem[]>([]);
   const [timeRemain, setRemain] = useState(30);
   useEffect(() => {
     (async () => {
-      await keyModel.getKeys();
+      await _keyModel.getKeys();
       calc();
     })();
   }, []);
@@ -36,7 +36,7 @@ function List() {
   };
   const calc = () => {
     const newData: DataItem[] = [];
-    keyModel.keys.forEach(key => {
+    _keyModel.keys.forEach(key => {
       newData.push({
         name: key.name,
         token: authenticator.generate(key.key),
@@ -55,7 +55,7 @@ function List() {
           <ListAntd
             bordered
             itemLayout="horizontal"
-            loading={keyModel.loading}
+            loading={_keyModel.loading}
             header={<Progress percent={((30 - timeRemain) * 100) / 30} format={() => `${timeRemain}秒`} />}
             dataSource={data}
             renderItem={item => (

@@ -1,7 +1,7 @@
-import KeyModel from './KeyModel';
-import LoginModel from './LoginModel';
+import keyModel from './keyModel';
+import loginModel from './loginModel';
 
 export {
-  KeyModel,
-  LoginModel,
+  keyModel,
+  loginModel,
 };
