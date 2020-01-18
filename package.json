@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://tarocch1.github.io/2FA",
   "dependencies": {
-    "@tarocch1/use-model": "^1.2.0",
+    "@tarocch1/use-model": "^1.2.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
