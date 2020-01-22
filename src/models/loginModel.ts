@@ -2,8 +2,15 @@ import { message } from 'antd';
 import { loginService } from '../services';
 
 class LoginModel {
+  logging = false;
   logged = false;
   inited = false;
+  setLogging = (logging: boolean) => {
+    this.logging = logging;
+  };
+  setLogged = (logged: boolean) => {
+    this.logged = logged;
+  };
   initAuth = async () => {
     const jwt = JSON.parse(window.localStorage.getItem('jwt') || 'null');
     if (jwt) {
@@ -14,18 +21,6 @@ class LoginModel {
       } else {
         this.refreshToken();
         this.logged = true;
-      }
-    } else {
-      const params = new URLSearchParams(window.location.search.replace(/^\?/, ''));
-      const code = params.get('code');
-      if (code) {
-        const newJWT = await loginService.getToken(code);
-        if (newJWT.erred) {
-          message.error('获取token失败');
-        } else {
-          window.localStorage.setItem('jwt', JSON.stringify(newJWT));
-          this.logged = true;
-        }
       }
     }
     this.inited = true;
