@@ -18,14 +18,14 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 12
-      - id: ci
+      - id: npm_ci
         name: npm ci
         run: npm ci
-      - id: build
+      - id: npm_run_build
         name: Build
         run: npm run build
       - id: deploy
         name: Deploy
         run: bash ./.github/workflows/deploy.sh
         env:
-          TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

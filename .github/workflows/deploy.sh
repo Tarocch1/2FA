@@ -1,4 +1,4 @@
-git clone "https://Tarocch1:${TOKEN}@github.com/Tarocch1/2FA.git" -b gh-pages tmp
+git clone "https://Tarocch1:${GITHUB_TOKEN}@github.com/Tarocch1/2FA.git" -b gh-pages tmp
 cp -r tmp/.git build/
 cd build
 git config user.name "Tarocch1"
