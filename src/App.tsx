@@ -16,9 +16,9 @@ function App() {
   return (
     <Layout>
       <Layout.Header style={{ padding: '0 16px' }}>
-        <Row style={{ height: '100%' }} type="flex" justify="center" align="middle">
+        <Row style={{ height: '100%' }} justify="center" align="middle">
           <Col style={{ maxWidth: 1000, flexGrow: 1, paddingRight: 10 }}>
-            <Row type="flex" justify="space-between" align="middle">
+            <Row justify="space-between" align="middle">
               <Col>
                 <Typography.Title style={{ color: '#fff', marginBottom: 0 }} level={4}>
                   2FA认证工具

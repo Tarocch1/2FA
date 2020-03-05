@@ -10,6 +10,8 @@ interface DataItem {
   token: string;
 }
 
+let timer = 0;
+
 function List() {
   const _keyModel = useModel(keyModel);
   const [data, setData] = useState<DataItem[]>([]);
@@ -18,11 +20,9 @@ function List() {
     (async () => {
       await _keyModel.getKeys();
       calc();
+      cron();
+      timer = window.setInterval(cron, 1000);
     })();
-  }, []);
-  useEffect(() => {
-    cron();
-    const timer = window.setInterval(cron, 1000);
     return () => {
       window.clearInterval(timer);
     };
@@ -49,7 +49,7 @@ function List() {
     message.success('复制成功');
   };
   return (
-    <Row type="flex" justify="center">
+    <Row justify="center">
       <Col style={{ maxWidth: 1000, flexGrow: 1 }}>
         <Card bodyStyle={{ padding: 8 }} bordered={false}>
           <ListAntd

@@ -12,13 +12,13 @@
     "@types/node": "^12.12.24",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
-    "antd": "^3.26.6",
+    "antd": "^4.0.0",
     "axios": "^0.19.1",
     "copy-to-clipboard": "^3.2.0",
     "otplib": "^12.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.4.0",
     "typescript": "^3.7.4"
   },
   "scripts": {

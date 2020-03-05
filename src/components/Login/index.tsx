@@ -28,7 +28,7 @@ function Login() {
     }
   };
   return (
-    <Row style={{ height: '100%' }} type="flex" justify="center" align="middle">
+    <Row style={{ height: '100%' }} justify="center" align="middle">
       <Col>
         <Result
           status="403"
