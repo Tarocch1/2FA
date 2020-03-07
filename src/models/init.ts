@@ -1,5 +1,5 @@
 import { setModel } from '@tarocch1/use-model';
-import { keyModel, loginModel } from './';
+import { KeyModel, LoginModel } from './';
 
-setModel(keyModel);
-setModel(loginModel);
+setModel(KeyModel);
+setModel(LoginModel);
