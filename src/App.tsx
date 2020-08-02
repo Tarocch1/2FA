@@ -20,14 +20,21 @@ function App() {
           <Col style={{ maxWidth: 1000, flexGrow: 1, paddingRight: 10 }}>
             <Row justify="space-between" align="middle">
               <Col>
-                <Typography.Title style={{ color: '#fff', marginBottom: 0 }} level={4}>
+                <Typography.Title
+                  style={{ color: '#fff', marginBottom: 0 }}
+                  level={4}
+                >
                   2FA认证工具
                 </Typography.Title>
               </Col>
               <Col>
                 {loginModel.inited && loginModel.logged && (
                   <React.Fragment>
-                    <Button style={{ marginRight: 8 }} type="primary" onClick={() => setShowCalc(true)}>
+                    <Button
+                      style={{ marginRight: 8 }}
+                      type="primary"
+                      onClick={() => setShowCalc(true)}
+                    >
                       计算器
                     </Button>
                     <Button type="primary" danger onClick={loginModel.logout}>
@@ -40,7 +47,13 @@ function App() {
           </Col>
         </Row>
       </Layout.Header>
-      <Layout.Content style={{ height: 'calc(100vh - 64px)', padding: 16, overflowY: 'scroll' }}>
+      <Layout.Content
+        style={{
+          height: 'calc(100vh - 64px)',
+          padding: 16,
+          overflowY: 'scroll',
+        }}
+      >
         {!loginModel.inited && <Loading />}
         {loginModel.inited && !loginModel.logged && <Login />}
         {loginModel.inited && loginModel.logged && <List />}

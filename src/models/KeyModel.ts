@@ -17,7 +17,7 @@ class KeyModel {
       this.keys = keys;
     }
     this.loading = false;
-  };
+  }
 }
 
 export default KeyModel;

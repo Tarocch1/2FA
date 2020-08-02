@@ -17,10 +17,17 @@ function Login() {
   }, []);
   const login = () => {
     loginModel.setLogging(true);
-    w = window.open(`${oauth_base}${api.login}?redirect=${config.oauthRedirect}`, '_blank');
+    w = window.open(
+      `${oauth_base}${api.login}?redirect=${config.oauthRedirect}`,
+      '_blank',
+    );
   };
   const handleMessage = (e: MessageEvent) => {
-    if (config.oauthRedirect.startsWith(e.origin) && !e.data.erred && e.data.type === config.oauthMessageType) {
+    if (
+      config.oauthRedirect.startsWith(e.origin) &&
+      !e.data.erred &&
+      e.data.type === config.oauthMessageType
+    ) {
       window.localStorage.setItem('jwt', JSON.stringify(e.data.jwt));
       w?.close();
       loginModel.setLogging(false);

@@ -7,10 +7,10 @@ class LoginModel {
   inited = false;
   setLogging(logging: boolean) {
     this.logging = logging;
-  };
+  }
   setLogged(logged: boolean) {
     this.logged = logged;
-  };
+  }
   async initAuth() {
     const jwt = JSON.parse(window.localStorage.getItem('jwt') || 'null');
     if (jwt) {
@@ -24,18 +24,18 @@ class LoginModel {
       }
     }
     this.inited = true;
-  };
+  }
   async refreshToken() {
     const jwt = JSON.parse(window.localStorage.getItem('jwt')!);
     if (jwt.payload.exp - Math.floor(Date.now() / 1000) <= 60 * 60 * 24) {
       const newJWT = await loginService.refreshToken();
       window.localStorage.setItem('jwt', JSON.stringify(newJWT));
     }
-  };
+  }
   logout() {
     window.localStorage.removeItem('jwt');
     this.logged = false;
-  };
+  }
 }
 
 export default LoginModel;

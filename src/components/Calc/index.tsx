@@ -37,10 +37,17 @@ function Calc() {
   return (
     <Row justify="center">
       <Col style={{ marginBottom: 8 }} span={24}>
-        <Input ref={inputRef} placeholder="key" onPressEnter={onPressEnterHandle} />
+        <Input
+          ref={inputRef}
+          placeholder="key"
+          onPressEnter={onPressEnterHandle}
+        />
       </Col>
       <Col style={{ marginBottom: 8 }} span={24}>
-        <Progress percent={((30 - timeRemain) * 100) / 30} format={() => `${timeRemain}秒`} />
+        <Progress
+          percent={((30 - timeRemain) * 100) / 30}
+          format={() => `${timeRemain}秒`}
+        />
       </Col>
       <Col>
         <Typography.Text copyable>{token}</Typography.Text>
