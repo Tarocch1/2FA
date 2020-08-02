@@ -87,6 +87,7 @@ function List() {
                 format={() => `${timeRemain}s`}
               />
             )}
+            loading={keyModel.loading}
             columns={columns}
             dataSource={data}
             pagination={false}
