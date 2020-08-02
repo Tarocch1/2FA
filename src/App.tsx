@@ -30,7 +30,7 @@ function App() {
                     <Button style={{ marginRight: 8 }} type="primary" onClick={() => setShowCalc(true)}>
                       计算器
                     </Button>
-                    <Button type="danger" onClick={loginModel.logout}>
+                    <Button type="primary" danger onClick={loginModel.logout}>
                       退出
                     </Button>
                   </React.Fragment>

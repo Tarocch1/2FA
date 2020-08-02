@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Card, List as ListAntd, Progress, message } from 'antd';
+import { Row, Col, Card, Table, Progress, message } from 'antd';
+import { ColumnsType } from 'antd/es/table';
 import { useModel } from '@tarocch1/use-model';
 import { authenticator } from 'otplib';
 import copy from 'copy-to-clipboard';
@@ -16,17 +17,7 @@ function List() {
   const keyModel = useModel(KeyModel);
   const [data, setData] = useState<DataItem[]>([]);
   const [timeRemain, setRemain] = useState(30);
-  useEffect(() => {
-    (async () => {
-      await keyModel.getKeys();
-      calc();
-      cron();
-      timer = window.setInterval(cron, 1000);
-    })();
-    return () => {
-      window.clearInterval(timer);
-    };
-  }, []);
+
   const cron = () => {
     const remain = authenticator.timeRemaining();
     setRemain(remain);
@@ -48,28 +39,57 @@ function List() {
     copy(text);
     message.success('复制成功');
   };
+
+  useEffect(() => {
+    (async () => {
+      await keyModel.getKeys();
+      calc();
+      cron();
+      timer = window.setInterval(cron, 1000);
+    })();
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, []);
+
+  const columns: ColumnsType<DataItem> = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Token',
+      dataIndex: 'token',
+      width: 100,
+      align: 'center',
+    },
+    {
+      key: 'action',
+      title: 'Action',
+      width: 100,
+      align: 'center',
+      render: (value: DataItem, record: DataItem, index: number) => {
+        return <a onClick={() => cp(value.token)}>复制</a>;
+      },
+    },
+  ];
+
   return (
     <Row justify="center">
       <Col style={{ maxWidth: 1000, flexGrow: 1 }}>
         <Card bodyStyle={{ padding: 8 }} bordered={false}>
-          <ListAntd
+          <Table
+            size="middle"
             bordered
-            itemLayout="horizontal"
-            loading={keyModel.loading}
-            header={<Progress percent={((30 - timeRemain) * 100) / 30} format={() => `${timeRemain}秒`} />}
-            dataSource={data}
-            renderItem={item => (
-              <ListAntd.Item
-                actions={[
-                  <a key="copy" onClick={() => cp(item.token)}>
-                    复制
-                  </a>,
-                ]}
-              >
-                <ListAntd.Item.Meta title={item.name} />
-                <div>{item.token}</div>
-              </ListAntd.Item>
+            title={() => (
+              <Progress
+                percent={((30 - timeRemain) * 100) / 30}
+                format={() => `${timeRemain}s`}
+              />
             )}
+            columns={columns}
+            dataSource={data}
+            pagination={false}
           />
         </Card>
       </Col>
