@@ -90,6 +90,7 @@ function List() {
             loading={keyModel.loading}
             columns={columns}
             dataSource={data}
+            rowKey="name"
             pagination={false}
           />
         </Card>
