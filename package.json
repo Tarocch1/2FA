@@ -1,8 +1,7 @@
 {
-  "name": "2fa",
+  "name": "mfa",
   "version": "2.0.0",
   "private": true,
-  "homepage": "https://tarocch1.github.io/2FA",
   "dependencies": {
     "@tarocch1/use-model": "^2.0.1",
     "@testing-library/jest-dom": "^4.2.4",

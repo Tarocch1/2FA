@@ -24,7 +24,7 @@ function App() {
                   style={{ color: '#fff', marginBottom: 0 }}
                   level={4}
                 >
-                  2FA认证工具
+                  MFA认证工具
                 </Typography.Title>
               </Col>
               <Col>
