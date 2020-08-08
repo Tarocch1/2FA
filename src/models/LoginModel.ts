@@ -2,12 +2,8 @@ import { message } from 'antd';
 import { loginService } from '../services';
 
 class LoginModel {
-  logging = false;
   logged = false;
   inited = false;
-  setLogging(logging: boolean) {
-    this.logging = logging;
-  }
   setLogged(logged: boolean) {
     this.logged = logged;
   }
@@ -20,6 +16,12 @@ class LoginModel {
         window.localStorage.removeItem('jwt');
       } else {
         this.refreshToken();
+        this.logged = true;
+      }
+    } else {
+      const getTokenRes = await loginService.getToken();
+      if (!getTokenRes.erred) {
+        window.localStorage.setItem('jwt', JSON.stringify(getTokenRes));
         this.logged = true;
       }
     }

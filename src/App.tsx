@@ -51,7 +51,7 @@ function App() {
         style={{
           height: 'calc(100vh - 64px)',
           padding: 16,
-          overflowY: 'scroll',
+          overflowY: 'auto',
         }}
       >
         {!loginModel.inited && <Loading />}

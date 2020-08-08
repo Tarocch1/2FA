@@ -1,38 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Row, Col, Result, Button } from 'antd';
-import { useModel } from '@tarocch1/use-model';
-import { LoginModel } from '../../models';
-import { oauth_base, api } from '../../constants/api';
-import * as config from '../../constants/config';
+import { auth_base, api } from '../../constants/api';
 
 let w: Window | null;
 
 function Login() {
-  const loginModel = useModel(LoginModel);
-  useEffect(() => {
-    window.addEventListener('message', handleMessage);
-    return () => {
-      window.removeEventListener('message', handleMessage);
-    };
-  }, []);
   const login = () => {
-    loginModel.setLogging(true);
-    w = window.open(
-      `${oauth_base}${api.login}?redirect=${config.oauthRedirect}`,
-      '_blank',
+    window.location.assign(
+      `${auth_base}${api.login}?redirect=${window.location.href}`,
     );
-  };
-  const handleMessage = (e: MessageEvent) => {
-    if (
-      config.oauthRedirect.startsWith(e.origin) &&
-      !e.data.erred &&
-      e.data.type === config.oauthMessageType
-    ) {
-      window.localStorage.setItem('jwt', JSON.stringify(e.data.jwt));
-      w?.close();
-      loginModel.setLogging(false);
-      loginModel.setLogged(true);
-    }
   };
   return (
     <Row style={{ height: '100%' }} justify="center" align="middle">
@@ -41,7 +17,7 @@ function Login() {
           status="403"
           title="403"
           extra={
-            <Button type="primary" loading={loginModel.logging} onClick={login}>
+            <Button type="primary" onClick={login}>
               登录
             </Button>
           }
