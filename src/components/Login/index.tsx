@@ -2,8 +2,6 @@ import React from 'react';
 import { Row, Col, Result, Button } from 'antd';
 import { auth_base, api } from '../../constants/api';
 
-let w: Window | null;
-
 function Login() {
   const login = () => {
     window.location.assign(
