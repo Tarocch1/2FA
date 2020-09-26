@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Layout, Row, Col, Typography, Button, Modal } from 'antd';
-import { useModel } from '@tarocch1/use-model';
-import { LoginModel } from './models';
-import Loading from './components/Loading';
-import Login from './components/Login';
 import List from './components/List';
 import Calc from './components/Calc';
 
 function App() {
-  const loginModel = useModel(LoginModel);
   const [showCalc, setShowCalc] = useState(false);
-  useEffect(() => {
-    loginModel.initAuth();
-  }, []);
   return (
     <Layout>
       <Layout.Header style={{ padding: '0 16px' }}>
         <Row style={{ height: '100%' }} justify="center" align="middle">
-          <Col style={{ maxWidth: 1000, flexGrow: 1, paddingRight: 10 }}>
+          <Col style={{ maxWidth: 1000, flexGrow: 1 }}>
             <Row justify="space-between" align="middle">
               <Col>
                 <Typography.Title
@@ -28,20 +20,9 @@ function App() {
                 </Typography.Title>
               </Col>
               <Col>
-                {loginModel.inited && loginModel.logged && (
-                  <React.Fragment>
-                    <Button
-                      style={{ marginRight: 8 }}
-                      type="primary"
-                      onClick={() => setShowCalc(true)}
-                    >
-                      计算器
-                    </Button>
-                    <Button type="primary" danger onClick={loginModel.logout}>
-                      退出
-                    </Button>
-                  </React.Fragment>
-                )}
+                <Button type="primary" onClick={() => setShowCalc(true)}>
+                  计算器
+                </Button>
               </Col>
             </Row>
           </Col>
@@ -54,9 +35,7 @@ function App() {
           overflowY: 'auto',
         }}
       >
-        {!loginModel.inited && <Loading />}
-        {loginModel.inited && !loginModel.logged && <Login />}
-        {loginModel.inited && loginModel.logged && <List />}
+        <List />
       </Layout.Content>
       <Modal
         destroyOnClose
