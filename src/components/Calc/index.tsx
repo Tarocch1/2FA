@@ -46,7 +46,7 @@ function Calc() {
       <Col style={{ marginBottom: 8 }} span={24}>
         <Progress
           percent={((30 - timeRemain) * 100) / 30}
-          format={() => `${timeRemain}秒`}
+          format={() => `${timeRemain}s`}
         />
       </Col>
       <Col>
