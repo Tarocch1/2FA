@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.css"],"names":[],"mappings":"AAEA,MACE,WAAY,CACZ,YACF","file":"main.6eae1c03.chunk.css","sourcesContent":["@import '~antd/dist/antd.css';\n\n#root {\n  width: 100vw;\n  height: 100vh;\n}\n"]}
