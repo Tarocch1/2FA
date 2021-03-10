@@ -1,5 +1,5 @@
-cp -r tmp/.git build/
-cd build
+cp -r tmp/.git dist/
+cd dist
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git status

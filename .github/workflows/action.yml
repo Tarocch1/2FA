@@ -30,8 +30,6 @@ jobs:
       - id: npm_run_build
         name: Build
         run: npm run build
-        env:
-          CI: false
       - id: deploy
         name: Deploy
         run: bash ./.github/workflows/deploy.sh

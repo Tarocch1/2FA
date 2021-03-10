@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Table, Progress, message } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { useModel } from '@tarocch1/use-model';
-import { authenticator } from 'otplib';
+import { useStore } from '@tarocch1/use-store';
+import { authenticator } from 'otplib/otplib-browser';
 import copy from 'copy-to-clipboard';
-import { KeyModel } from '../../models';
+import { keyStore } from '../../store';
 
 interface DataItem {
   name: string;
@@ -14,7 +14,7 @@ interface DataItem {
 let timer = 0;
 
 function List() {
-  const keyModel = useModel(KeyModel);
+  const [keyState, keyAction] = useStore<typeof keyStore>('keyStore');
   const [data, setData] = useState<DataItem[]>([]);
   const [timeRemain, setRemain] = useState(30);
 
@@ -27,7 +27,7 @@ function List() {
   };
   const calc = () => {
     const newData: DataItem[] = [];
-    keyModel.keys.forEach(key => {
+    keyState.keys.forEach(key => {
       newData.push({
         name: key.name,
         token: authenticator.generate(key.key),
@@ -42,7 +42,7 @@ function List() {
 
   useEffect(() => {
     (async () => {
-      await keyModel.getKeys();
+      await keyAction.getKeys();
       calc();
       cron();
       timer = window.setInterval(cron, 1000);
@@ -87,7 +87,7 @@ function List() {
                 format={() => `${timeRemain}s`}
               />
             )}
-            loading={keyModel.loading}
+            loading={keyState.loading}
             columns={columns}
             dataSource={data}
             rowKey="name"

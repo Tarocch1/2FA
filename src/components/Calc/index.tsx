@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Row, Col, Input, Progress, Typography } from 'antd';
-import { authenticator } from 'otplib';
+import { authenticator } from 'otplib/otplib-browser';
 
 let timer = 0;
 

@@ -1,44 +1,27 @@
 {
-  "name": "mfa",
-  "version": "2.0.0",
+  "name": "@tarocch1/mfa",
+  "version": "3.0.0",
   "private": true,
-  "dependencies": {
-    "@tarocch1/use-model": "^2.0.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.0.25",
-    "@types/node": "^12.12.24",
-    "@types/react": "^16.9.51",
-    "@types/react-dom": "^16.9.4",
-    "antd": "^4.5.1",
-    "axios": "^0.21.1",
-    "copy-to-clipboard": "^3.2.0",
-    "otplib": "^12.0.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0",
-    "typescript": "^3.7.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "@tarocch1/use-store": "^3.2.1",
+    "antd": "^4.13.1",
+    "axios": "^0.21.1",
+    "buffer": "^6.0.3",
+    "copy-to-clipboard": "^3.3.1",
+    "otplib": "^11.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.2",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "typescript": "^4.2.3",
+    "vite": "^2.0.5"
   }
 }
