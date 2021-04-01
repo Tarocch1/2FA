@@ -13,12 +13,6 @@ jobs:
       - id: checkout
         name: Checkout
         uses: actions/checkout@v2
-      - id: checkout_gh-pages
-        name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: 'gh-pages'
-          path: 'tmp'
       - id: setup_nodejs
         name: Setup node.js
         uses: actions/setup-node@v2
@@ -32,4 +26,8 @@ jobs:
         run: npm run build
       - id: deploy
         name: Deploy
-        run: bash ./.github/workflows/deploy.sh
+        uses: Tarocch1/actions/github-push@main
+        with:
+          github_token: ${{ github.token }}
+          branch: gh-pages
+          directory: dist
