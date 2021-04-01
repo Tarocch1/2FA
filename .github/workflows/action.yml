@@ -28,6 +28,5 @@ jobs:
         name: Deploy
         uses: Tarocch1/actions/github-push@main
         with:
-          github_token: ${{ github.token }}
           branch: gh-pages
           directory: dist
